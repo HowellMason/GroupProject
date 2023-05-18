@@ -6,7 +6,7 @@ from flask_app.models.like import Like
 
 
 @app.route('/home')
-def home_page():
+def dashboard():
     if 'user_id' not in session:
         return redirect('/login')
     data = {
