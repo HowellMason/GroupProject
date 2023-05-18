@@ -1,6 +1,6 @@
 # GroupProject
 
-Name: <Jeremiah Snipes, Stragglenutz, gchristman >
+Name: <Jeremiah Snipes, Mason Howell, gchristman >
 
 Stack: < Python with Flask >
 
@@ -10,7 +10,7 @@ Roles:
 
 Jeremiah Snipes: front-end + python models/controllers 
 
-Stragglenutz: back-end
+Mason Howell: back-end + database
 
 gchristman: front-end + python models/controllers
 
