@@ -30,12 +30,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for blogs in blogs %}
+                    {% for blog in blogs %}
                     {% if session['user_id'] == blogs.creator.id %}
                         <tr>
-                            <td>{{blogs.title}}</td>
-                            <td>{{blogs.content}}</td>
-                            <td>{{blogs.date.strftime('%B %dth, %Y')}}</td>
+                            <td>{{blog.title}}</td>
+                            <td>{{blog.content}}</td>
+                            <td>{{blog.date.strftime('%B %dth, %Y')}}</td>
                             <td>
                                 <a href="/blogs/edit/{{round.id}}" class="btn btn-secondary">Edit</a>
                                 <a href="/blogs/destroy/{{blogs.id}}" class="btn btn-danger">Delete</a>
