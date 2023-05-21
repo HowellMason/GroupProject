@@ -32,7 +32,7 @@ def process_login():
 @app.route('/register/process', methods = ['POST'])
 def register_process():
     if not User.validate_registration(request.form):
-        return redirect('/register')
+        return redirect('/login')
     data = {
         'first_name': (request.form['first_name'].strip()),
         'last_name': (request.form['last_name'].strip()),

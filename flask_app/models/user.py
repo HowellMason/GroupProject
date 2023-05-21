@@ -27,58 +27,58 @@ class User:
         check_first = bool(re.match(allowed, user['first_name']))
         check_last = bool(re.match(allowed, user['last_name']))
         # ------
-        if ((len(user['first_name']) - (user['first_name'].count(' ')) == 0) and (len(user['last_name']) - (user['last_name'].count(' ')) == 0)
-            and (len(user['email']) - (user['email'].count(' ')) == 0) and (len(user['password']) == 0)):
-            flash("All fields required")
+        if ((len(user['first_name']) - (user['first_name'].count(' ')) == 0) and (len(user['last_name']) - (user['last_name'].count(' ')) == 0) and (len(user['email']) - (user['email'].count(' ')) == 0)
+            and (len(user['password']) == 0) - (user['password']).count(' ') == 0) and (len(user['confirm_password']) - (user['confirm_password']).count(' ') == 0):
+            flash("All fields required", "register")
             is_valid = False
         # FIRST NAME VALIDATION
         elif len(user['first_name']) - (user['first_name'].count(' ')) == 0:
-            flash("First name is required")
+            flash("First name is required", "register")
             is_valid = False
         elif len(user['first_name']) - (user['first_name'].count(' ')) < 2:
-            flash("First name must be atleast 2 characters")
+            flash("First name must be atleast 2 characters", "register")
             is_valid = False
         elif len(user['first_name']) - (user['first_name'].count(' ')) > 100:
-            flash("First name must less than 100 characters")
+            flash("First name must less than 100 characters", "register")
             is_valid = False
         elif check_first == False:
-            flash("First name must only contains letters")
+            flash("First name must only contains letters", "register")
             is_valid = False
         # LAST NAME VALIDATION
         elif len(user['last_name']) - (user['last_name'].count(' ')) == 0:
-            flash("Last name is required")
+            flash("Last name is required", "register")
             is_valid = False
         elif len(user['last_name']) - (user['last_name'].count(' ')) < 2:
-            flash("Last name must be atleast 2 characters")
+            flash("Last name must be atleast 2 characters", "register")
             is_valid = False
         elif len(user['last_name']) - (user['last_name'].count(' ')) > 100:
-            flash("Last name must less than 100 characters")
+            flash("Last name must less than 100 characters", "register")
             is_valid = False
         elif check_last == False:
-            flash("Last name must only contain letters")
+            flash("Last name must only contain letters", "register")
             is_valid = False
         # EMAIL VALIDATION
         elif len(results) > 0:
-            flash("Email is already in use. Please try another email")
+            flash("Email is already in use. Please try another email", "register")
             is_valid = False
         elif len(user['email']) - (user['email'].count(' ')) == 0:
-            flash("Email is required")
+            flash("Email is required", "register")
             is_valid = False
         elif not EMAIL_REGEX.match(user['email']):
-            flash("Invalid email format")
+            flash("Invalid email format", "register")
             is_valid = False
         # PASSWORD VALIDATION
         elif len(user['password']) == 0:
-            flash("Password is required")
+            flash("Password is required", "register")
             is_valid = False
         elif len(user['password']) < 8:
-            flash("Password must contain atleast 8 characters")
+            flash("Password must contain atleast 8 characters", "register")
             is_valid = False
-        elif len(user['pass_confirm']) - (user['pass_confirm'].count(' ')) == 0:
-            flash("Please confirm your password")
+        elif len(user['confirm_password']) - (user['confirm_password'].count(' ')) == 0:
+            flash("Please confirm your password", "register")
             is_valid = False
-        elif user['password'] != user['pass_confirm']:
-            flash("Passwords don't match. Try again")
+        elif user['password'] != user['confirm_password']:
+            flash("Passwords don't match. Try again", "register")
             is_valid = False
         return is_valid
     @staticmethod
@@ -87,19 +87,19 @@ class User:
         existing_user = User.get_with_email(user)
         # ------
         if (len(user['email']) - user['email'].count(' ') == 0) and (len(user['password']) - user['password'].count(' ') == 0):
-            flash("All fields required")
+            flash("All fields required", "login")
             is_valid = False
         elif len(user['email']) - user['email'].count(' ') == 0:
-            flash("Email is required")
+            flash("Email is required", "login")
             is_valid = False
         elif not existing_user:
-            flash("No account associated with this email")
+            flash("No account associated with this email", "login")
             is_valid = False
         elif len(user['password']) - user['password'].count(' ') == 0:
-            flash("Password is required")
+            flash("Password is required", "login")
             is_valid = False
         elif not bcrypt.check_password_hash(existing_user.password, user['password']):
-            flash("Invalid Email or Password")
+            flash("Invalid Email or Password", "login")
             is_valid = False
         return is_valid
     @classmethod
