@@ -6,6 +6,17 @@ from flask_app.models.like import Like
 from flask_app.controllers import likes
 
 
+@app.route('/home')
+def dashboard():
+    if 'user_id' not in session:
+        return redirect('/login')
+    data = {
+        'id': session['user_id']
+    }
+    user = User.get_with_id(data)
+    blogs = Blog.all_blogs()
+    return render_template('home.html', user = user, blogs = blogs)
+
 @app.route('/blogs/<int:blog_id>')
 def view_blog(blog_id):
     data = {
