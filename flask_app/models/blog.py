@@ -176,6 +176,7 @@ class Blog:
                         'updated_at': blog["liker.updated_at"]
                     })
                 this_blog.likes.append(this_like)
+        return users_blogs
     @classmethod
     def edit_blog(cls, data):
         query = """UPDATE blogs

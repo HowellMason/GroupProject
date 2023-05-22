@@ -24,7 +24,15 @@ def view_my_blogs(user_id):
         'id': user_id
     }
     blogs = Blog.users_blogs(data)
-    return render_template('myblogs.html')
+    
+    user_data = {
+        'id': session['user_id']
+    }
+    user = User.get_with_id(user_data)
+    
+    return render_template('myblogs.html', blogs=blogs, user=user)
+
+
 
 @app.route('/blogs/new')
 def new_blog():
