@@ -33,7 +33,7 @@
                     {% for blog in blogs %}
                         <tr>
                             <td> {{ blog.title }} </td>
-                            <td style="max-width: 805px; display: inline-block; word-wrap: break-word;">{{blog.content}}</td>
+                            <td style="max-width: 805px; display: inline-block; word-wrap: break-word;"> {{ blog.content }} </td>
                             <td> {{ blog.created_at.strftime('%B %dth, %Y') }} </td>
                             <td>
                                 <a href="/blogs/edit/{{blog.id}}" class="btn btn-secondary">Edit</a>
