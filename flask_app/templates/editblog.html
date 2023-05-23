@@ -12,7 +12,7 @@
         <div class="row">
             <h1 class="p-0 col-7">Blog.</h1>
             <a href="/my_blogs/{{user.id}}" class="btn btn-outline-dark offset-1 col-1">My Blogs</a>
-            <h2 class="p-0 col-3 text-end">Welcome, {{user.first_name}}!</h2>
+            <h2 class="p-0 col-3 text-end">Welcome, {{ user.first_name }}!</h2>
         </div>
         <div class="row mt-2">
             <h4 class="p-0 col-6">A social site for all bloggers.</h4>
@@ -27,22 +27,24 @@
                 {% endif %}
             {% endwith %}
         </div>
-        <form action="/blogs/edit/process/{{blogs.id}}" method="post" class="card row border border-dark border-4 rounded rounded-3 p-3 fs-4 mt-2">
-            <h2>Re-Post Your Blog</h2> 
-            <div class="row">
-                <div class="col-4 offset-1">
-                    <div class="form-group mb-3">
-                        <label for="title" class="form-label">Title:</label>
-                        <input type="text" name="title" id="title" class="form-control" value="{{blogs.title}}">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="content" class="form-label">Content:</label>
-                        <textarea name="content" id="content" class="form-control">{{blogs.content}}</textarea>
+        {% for blog in blog %}
+            <form action="/blogs/edit/process/{{ blog.id }}" method="post" class="card row border border-dark border-4 rounded rounded-3 p-3 fs-4 mt-2">
+                <h2>Re-Post Your Blog</h2> 
+                <div class="row">
+                    <div class="col-4 offset-1">
+                        <div class="form-group mb-3">
+                            <label for="title" class="form-label">Title:</label>
+                            <input type="text" name="title" id="title" class="form-control" value="{{ blog.title }}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="content" class="form-label">Content:</label>
+                            <textarea name="content" id="content" class="form-control"> {{ blog.content }} </textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-success mt-2 col-2 mx-auto border border-1 me-md-2">Re-Post</button>
-        </form>
+                <button type="submit" class="btn btn-success mt-2 col-2 mx-auto border border-1 me-md-2">Re-Post</button>
+            </form>
+        {% endfor %}
     </div>
     </div>
 </body>

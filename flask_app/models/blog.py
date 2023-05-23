@@ -142,40 +142,23 @@ class Blog:
                 ON users.id = blogs.user_id
                 LEFT JOIN likes AS likes
                 ON likes.blog_id = blogs.id
-                WHERE users.id = %(id)s;"""
+                WHERE users.id = %(id)s
+                ORDER BY blogs.created_at DESC;"""
         results = connectToMySQL(cls.DB).query_db(query, data)
         users_blogs = []
         for blog in results:
-            if len(users_blogs) == 0 or users_blogs.id != blog['id']:
-                this_blog = cls(blog)
-                this_blog.creator = user.User({
-                    'id': blog['users.id'],
-                    "first_name": blog["first_name"],
-                    "last_name": blog["last_name"],
-                    "email": blog["email"],
-                    "password": blog["password"],
-                    "created_at": blog["users.created_at"],
-                    "updated_at": blog["users.updated_at"]
-                })
-                users_blogs.append(this_blog)
+            this_blog = cls(blog)
+            users_blogs.append(this_blog)
             if blog['likes.id'] != None:
                 this_like = like.Like({
                     'id': blog['likes.id'],
                     'user_id': blog['likes.user_id'],
-                    'blog_id': blog['likes.blog_id'],
+                    'blog_id': blog['blog_id'],
                     'created_at': blog['likes.created_at'],
                     'updated_at': blog['likes.updated_at']
                 })
-                this_like.creator = user.User({
-                        'id': blog['liker.id'],
-                        'first_name': blog["liker.first_name"],
-                        'last_name': blog["liker.last_name"],
-                        'email': blog["liker.email"],
-                        'password': '',
-                        'created_at': blog["liker.created_at"],
-                        'updated_at': blog["liker.updated_at"]
-                    })
                 this_blog.likes.append(this_like)
+                print(users_blogs)
         return users_blogs
     @classmethod
     def edit_blog(cls, data):

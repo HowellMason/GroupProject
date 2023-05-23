@@ -45,7 +45,7 @@ def register_process():
 
 
 # LOGOUT
-@app.route('/logout')
+@app.route('/user/logout')
 def logout():
     session.clear()
     return redirect('/login')
