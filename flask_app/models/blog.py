@@ -51,7 +51,7 @@ class Blog:
         query = """SELECT * FROM blogs 
             LEFT JOIN users
             ON blogs.user_id = users.id
-            LEFT JOIN likes AS likes
+            LEFT JOIN likes
             ON likes.blog_id = blogs.id
             LEFT JOIN users AS liker
             ON liker.id = likes.user_id
@@ -96,7 +96,7 @@ class Blog:
         query = """SELECT * FROM blogs 
                 LEFT JOIN users 
                 ON blogs.user_id = users.id
-                LEFT JOIN likes AS likes
+                LEFT JOIN likes
                 ON blogs.id = likes.blog_id
                 LEFT JOIN users AS liker
                 ON likes.user_id = liker.id
