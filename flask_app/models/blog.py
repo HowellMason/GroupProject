@@ -59,7 +59,6 @@ class Blog:
         results = connectToMySQL(cls.DB).query_db(query)
         all_blogs = []
         for blog in results:
-            print(results[0].keys())
             if len(all_blogs) == 0 or this_blog.id != blog['id']:
                 this_blog = cls(blog)
                 this_blog.creator = user.User({
