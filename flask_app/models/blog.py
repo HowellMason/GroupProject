@@ -120,7 +120,7 @@ class Blog:
                 this_like = like.Like({
                     'id': blog['likes.id'],
                     'user_id': blog['likes.user_id'],
-                    'blog_id': blog['likes.blog_id'],
+                    'blog_id': blog['blog_id'],
                     'created_at': blog['likes.created_at'],
                     'updated_at': blog['likes.updated_at']
                 })
